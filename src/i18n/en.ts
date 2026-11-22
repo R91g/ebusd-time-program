@@ -18,7 +18,6 @@ export const en = {
   programShort: { z1: "Z1", z2: "Z2", z3: "Z3", hwc: "HWC", cc: "CC" },
   issues: {
     invalid_time: (p) => `Invalid time "${p.value}"`,
-    off_grid: () => "Time must be on a 10-minute step",
     start_24: () => "24:00 is only allowed as end time",
     end_before_start: () => "End must be after start",
     overlap: (p) => `Overlaps with slot ${p.other} (${p.range})`,

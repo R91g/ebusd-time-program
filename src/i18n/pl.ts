@@ -21,7 +21,6 @@ export const pl: Strings = {
   programShort: { z1: "S1", z2: "S2", z3: "S3", hwc: "CWU", cc: "CYRK" },
   issues: {
     invalid_time: (p) => `Nieprawidłowa godzina „${p.value}”`,
-    off_grid: () => "Godzina musi być wielokrotnością 10 minut",
     start_24: () => "24:00 jest dozwolone tylko jako koniec",
     end_before_start: () => "Koniec musi być po początku",
     overlap: (p) => `Nakłada się na przedział ${p.other} (${p.range})`,

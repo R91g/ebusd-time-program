@@ -13,7 +13,6 @@ export const es: Strings = {
   programShort: { z1: "Z1", z2: "Z2", z3: "Z3", hwc: "ACS", cc: "REC" },
   issues: {
     invalid_time: (p) => `Hora no válida «${p.value}»`,
-    off_grid: () => "La hora debe ir en pasos de 10 minutos",
     start_24: () => "24:00 solo se permite como hora de fin",
     end_before_start: () => "El fin debe ser posterior al inicio",
     overlap: (p) => `Se solapa con la franja ${p.other} (${p.range})`,

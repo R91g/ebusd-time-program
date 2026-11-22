@@ -11,7 +11,7 @@ import { renderWeekPreview, uniformTemp } from "./components/week-preview.js";
 import { accentStyle, COUNT_MESSAGE_CANDIDATES, DEFAULTS, isServiceSource, resolveConfig, setbackEntityId, setbackWrite, type CardConfig, type SetbackWrite, type DefaultDays, type ResolvedConfig, type ResolvedProgram } from "./config.js";
 import type { Hass } from "./hass.js";
 import { formatTemp, programName, setLanguage, UI } from "./i18n/index.js";
-import { clampTemp, clampTime, defaultTemp, removeSlot, sortSlots, suggestSlot, updateSlot } from "./model/edit.js";
+import { clampTemp, defaultTemp, openTime, removeSlot, sortSlots, suggestSlot, updateSlot } from "./model/edit.js";
 import { MAX_SLOTS } from "./model/programs.js";
 import { fromMinutes, toMinutes } from "./model/time.js";
 import { DAYS, type Day, type ProgramSpec, type Slot, type Week } from "./model/types.js";
@@ -335,7 +335,7 @@ export class EbusdTimeProgramCard extends LitElement {
       if (!spec.temp) return;
       value = clampTemp(slot.temp ?? defaultTemp(spec)!, spec.temp);
     } else {
-      value = clampTime(toMinutes(slot[field]) ?? (field === "start" ? 6 * 60 : 7 * 60), field);
+      value = openTime(toMinutes(slot[field]) ?? (field === "start" ? 6 * 60 : 7 * 60), field);
     }
     this._sheet = { index, field, value };
   };

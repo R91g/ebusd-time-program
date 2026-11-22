@@ -14,7 +14,7 @@ A Home Assistant dashboard card to view and edit the weekly time programs of a V
 
 - **Heating zones 1–3, hot water and circulation**, each on its own tab
 - **Edit several days at once**: quick selection for Mo–Fr, Sa–Su or all days
-- **Up to 3 slots per day** on the controller's 10-minute grid, with a temperature per slot
+- **Up to 3 slots per day** in 10-minute steps, with a temperature per slot
 - **Checks before writing**: overlaps, end before start, temperatures out of range
 - **Verified writes**: every day is read back from the controller; retry, continue or restore if one doesn't match
 - **Read-only preview mode** for a compact week overview, with a marker for the current time

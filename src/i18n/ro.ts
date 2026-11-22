@@ -14,7 +14,6 @@ export const ro: Strings = {
   programShort: { z1: "Z1", z2: "Z2", z3: "Z3", hwc: "ACM", cc: "REC" },
   issues: {
     invalid_time: (p) => `Oră invalidă „${p.value}”`,
-    off_grid: () => "Ora trebuie să fie în pași de 10 minute",
     start_24: () => "24:00 este permis doar ca oră de sfârșit",
     end_before_start: () => "Sfârșitul trebuie să fie după început",
     overlap: (p) => `Se suprapune cu intervalul ${p.other} (${p.range})`,

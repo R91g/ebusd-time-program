@@ -13,7 +13,6 @@ export const el: Strings = {
   programShort: { z1: "Ζ1", z2: "Ζ2", z3: "Ζ3", hwc: "ΖΝΧ", cc: "ΑΝΑΚ" },
   issues: {
     invalid_time: (p) => `Μη έγκυρη ώρα «${p.value}»`,
-    off_grid: () => "Η ώρα πρέπει να είναι σε βήματα 10 λεπτών",
     start_24: () => "Το 24:00 επιτρέπεται μόνο ως λήξη",
     end_before_start: () => "Η λήξη πρέπει να είναι μετά την έναρξη",
     overlap: (p) => `Επικαλύπτεται με το διάστημα ${p.other} (${p.range})`,

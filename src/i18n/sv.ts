@@ -13,7 +13,6 @@ export const sv: Strings = {
   programShort: { z1: "Z1", z2: "Z2", z3: "Z3", hwc: "VV", cc: "VVC" },
   issues: {
     invalid_time: (p) => `Ogiltig tid ”${p.value}”`,
-    off_grid: () => "Tiden måste ligga på ett 10-minuterssteg",
     start_24: () => "24:00 är bara tillåtet som sluttid",
     end_before_start: () => "Slut måste vara efter start",
     overlap: (p) => `Överlappar period ${p.other} (${p.range})`,

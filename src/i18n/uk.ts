@@ -21,7 +21,6 @@ export const uk: Strings = {
   programShort: { z1: "З1", z2: "З2", z3: "З3", hwc: "ГВП", cc: "ЦИРК" },
   issues: {
     invalid_time: (p) => `Неправильний час «${p.value}»`,
-    off_grid: () => "Час має бути кратним 10 хвилинам",
     start_24: () => "24:00 дозволено лише як кінець",
     end_before_start: () => "Кінець має бути пізніше за початок",
     overlap: (p) => `Перетинається з інтервалом ${p.other} (${p.range})`,

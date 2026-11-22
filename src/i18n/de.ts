@@ -12,7 +12,6 @@ export const de: Strings = {
   programShort: { z1: "Z1", z2: "Z2", z3: "Z3", hwc: "WW", cc: "ZIRK" },
   issues: {
     invalid_time: (p) => `Ungültige Uhrzeit „${p.value}“`,
-    off_grid: () => "Uhrzeit muss auf 10 Minuten genau sein",
     start_24: () => "24:00 ist nur als Ende erlaubt",
     end_before_start: () => "Ende muss nach dem Beginn liegen",
     overlap: (p) => `Überschneidet sich mit Zeitfenster ${p.other} (${p.range})`,

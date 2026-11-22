@@ -13,7 +13,6 @@ export const nl: Strings = {
   programShort: { z1: "Z1", z2: "Z2", z3: "Z3", hwc: "WW", cc: "CIRC" },
   issues: {
     invalid_time: (p) => `Ongeldige tijd "${p.value}"`,
-    off_grid: () => "Tijd moet op een stap van 10 minuten liggen",
     start_24: () => "24:00 is alleen toegestaan als eindtijd",
     end_before_start: () => "Einde moet na het begin liggen",
     overlap: (p) => `Overlapt met tijdvak ${p.other} (${p.range})`,

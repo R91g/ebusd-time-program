@@ -14,7 +14,6 @@ export const hu: Strings = {
   programShort: { z1: "Z1", z2: "Z2", z3: "Z3", hwc: "HMV", cc: "CIRK" },
   issues: {
     invalid_time: (p) => `Érvénytelen időpont: „${p.value}”`,
-    off_grid: () => "Az időpontnak 10 perces lépésben kell lennie",
     start_24: () => "A 24:00 csak befejezésként engedélyezett",
     end_before_start: () => "A végének a kezdés után kell lennie",
     overlap: (p) => `Átfedés a(z) ${p.other}. idősávval (${p.range})`,

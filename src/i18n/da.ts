@@ -13,7 +13,6 @@ export const da: Strings = {
   programShort: { z1: "Z1", z2: "Z2", z3: "Z3", hwc: "VV", cc: "CIRK" },
   issues: {
     invalid_time: (p) => `Ugyldigt tidspunkt "${p.value}"`,
-    off_grid: () => "Tidspunktet skal ligge på et trin af 10 minutter",
     start_24: () => "24:00 er kun tilladt som sluttid",
     end_before_start: () => "Slut skal være efter start",
     overlap: (p) => `Overlapper med periode ${p.other} (${p.range})`,

@@ -16,7 +16,9 @@ the program of one of them; pick which day to start from, or **Start empty**. Wh
 
 ## Edit time slots
 
-Each day has up to **3 slots**. Times are on the controller's 10-minute grid, `24:00` is allowed as an end time.
+Each day has up to **3 slots**. Times are set in 10-minute steps, `24:00` is allowed as an end time. Some controllers
+(e.g. Saunier Duval BASS3) also store single minutes, such as `17:22` set in the manufacturer's app: the card shows
+and keeps such times; changing one moves it to the next 10-minute step.
 
 - **Tap a time** to change it: hours and minutes with arrows, or ±10 minutes. The keyboard works too.
 - **Tap a temperature** (zones and hot water) to change it in steps of 0.5 °C.
@@ -36,7 +38,7 @@ The card checks the slots while you type:
 
 | Check | Effect |
 |---|---|
-| Overlapping slots, end before start, start at `24:00`, time not on the 10-minute grid | **Error**, apply is blocked |
+| Overlapping slots, end before start, start at `24:00` | **Error**, apply is blocked |
 | Temperature missing or outside the range | **Error**, apply is blocked |
 | Temperature not on a 0.5 °C step | Warning, rounded when saving |
 | Zone below 15 °C | Warning, in case it was a typo |
