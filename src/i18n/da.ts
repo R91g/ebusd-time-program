@@ -129,7 +129,7 @@ export const da: Strings = {
       `Periode ${index + 1}: regulatoren har ${actual}, forventet ${expected}`,
     timeout: (s: number) => `Ingen bekræftelse fra regulatoren inden for ${s} s`,
     publish: (message: string) => `Kunne ikke sende til MQTT: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Gendan tidligere",
   retry: "Prøv igen",

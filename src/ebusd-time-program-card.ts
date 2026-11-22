@@ -1,6 +1,6 @@
 import { html, LitElement, nothing, type PropertyValues, type TemplateResult } from "lit";
 import { programFingerprint, readProgram, type ProgramRead, type ReadStatus } from "./adapters/mqtt.js";
-import { serviceLabel, serviceStore, writeDayService } from "./adapters/vaillant-ebus.js";
+import { serviceLabel, serviceStore, writeDayService } from "./adapters/service.js";
 import { renderApplyBar } from "./components/apply-bar.js";
 import { renderBusyPanel } from "./components/busy-panel.js";
 import { renderDayPicker, selectionLabel } from "./components/day-picker.js";
@@ -121,7 +121,7 @@ export class EbusdTimeProgramCard extends LitElement {
   private _waiters: (() => void)[] = [];
   private _successTimer: ReturnType<typeof setTimeout> | undefined;
   private _clock: ReturnType<typeof setInterval> | undefined;
-  /** Source `vaillant_ebus`: unsubscribe from the shared program reads. */
+  /** Service sources (`vaillant_ebus`, `arotherm_genia_ebusd`): unsubscribe from the shared program reads. */
   private _unsubscribe: (() => void) | undefined;
   /** Rendered as a thumbnail in HA's "Add card" dialog: show a picture instead of live data. */
   private _inPicker = false;

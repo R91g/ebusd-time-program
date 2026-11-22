@@ -137,7 +137,7 @@ export const uk: Strings = {
       `Інтервал ${index + 1}: у регуляторі ${actual}, очікувалось ${expected}`,
     timeout: (s: number) => `Немає підтвердження від регулятора протягом ${s} с`,
     publish: (message: string) => `Не вдалося надіслати в MQTT: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Відновити попередню",
   retry: "Повторити",

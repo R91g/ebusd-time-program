@@ -130,7 +130,7 @@ export const ro: Strings = {
       `Intervalul ${index + 1}: regulatorul are ${actual}, așteptat ${expected}`,
     timeout: (s: number) => `Nicio confirmare de la regulator în ${s} s`,
     publish: (message: string) => `Publicarea în MQTT a eșuat: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Restaurează anteriorul",
   retry: "Reîncearcă",

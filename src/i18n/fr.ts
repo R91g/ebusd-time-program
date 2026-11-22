@@ -129,7 +129,7 @@ export const fr: Strings = {
       `Plage ${index + 1} : le régulateur a ${actual}, attendu ${expected}`,
     timeout: (s: number) => `Aucune confirmation du régulateur en ${s} s`,
     publish: (message: string) => `Échec de la publication MQTT : ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration} : ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration} : ${message}`,
   },
   restorePrevious: "Restaurer l’ancien",
   retry: "Réessayer",

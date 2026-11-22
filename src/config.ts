@@ -96,7 +96,7 @@ export interface ResolvedConfig {
   language: string | null;
   source: CardSource;
   entryId: string | null;
-  /** Seconds between reads (vaillant_ebus source); 0 = no periodic reads. */
+  /** Seconds between reads (service sources `vaillant_ebus`, `arotherm_genia_ebusd`); 0 = no periodic reads. */
   refreshInterval: number;
   prefix: string;
   circuit: string;

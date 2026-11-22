@@ -129,7 +129,7 @@ export const nl: Strings = {
       `Tijdvak ${index + 1}: regelaar heeft ${actual}, verwacht ${expected}`,
     timeout: (s: number) => `Geen bevestiging van de regelaar binnen ${s} s`,
     publish: (message: string) => `Publiceren naar MQTT mislukt: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Vorige herstellen",
   retry: "Opnieuw",

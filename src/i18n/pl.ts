@@ -137,7 +137,7 @@ export const pl: Strings = {
       `Przedział ${index + 1}: regulator ma ${actual}, oczekiwano ${expected}`,
     timeout: (s: number) => `Brak potwierdzenia z regulatora w ciągu ${s} s`,
     publish: (message: string) => `Nie udało się wysłać do MQTT: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Przywróć poprzedni",
   retry: "Ponów",

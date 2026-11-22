@@ -130,7 +130,7 @@ export const hu: Strings = {
       `${index + 1}. idősáv: a szabályozón ${actual}, várt: ${expected}`,
     timeout: (s: number) => `Nincs megerősítés a szabályozótól ${s} másodpercen belül`,
     publish: (message: string) => `MQTT-küldés sikertelen: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Előző visszaállítása",
   retry: "Újra",

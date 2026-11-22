@@ -128,7 +128,7 @@ export const de: Strings = {
       `Zeitfenster ${index + 1}: Regler hat ${actual}, erwartet ${expected}`,
     timeout: (s: number) => `Keine Bestätigung vom Regler innerhalb von ${s} s`,
     publish: (message: string) => `Senden an MQTT fehlgeschlagen: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Vorheriges wiederherstellen",
   retry: "Wiederholen",

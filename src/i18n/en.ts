@@ -138,7 +138,7 @@ export const en = {
       `Slot ${index + 1}: controller has ${actual}, expected ${expected}`,
     timeout: (s: number) => `No confirmation from the controller within ${s} s`,
     publish: (message: string) => `Could not publish to MQTT: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Restore previous",
   retry: "Retry",

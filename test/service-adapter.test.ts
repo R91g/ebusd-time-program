@@ -9,7 +9,7 @@ import {
   toService,
   writeDayService,
   type ReadResponse,
-} from "../src/adapters/vaillant-ebus.js";
+} from "../src/adapters/service.js";
 import { resolveConfig } from "../src/config.js";
 import type { Hass } from "../src/hass.js";
 import { PROGRAMS } from "../src/model/programs.js";
@@ -68,13 +68,13 @@ describe("reading", () => {
 
   it("tells a missing integration or program apart from a temporary failure", () => {
     const previous = readFromResponse(week({ monday: [{ start: "06:00", end: "22:00", temperature: 21 }] }), z1);
-    const missing = errorRead({ code: "service_not_found", message: "Action vaillant_ebus.read_time_program not found." }, z1);
+    const missing = errorRead({ code: "service_not_found", message: "Action vaillant_ebus.read_time_program not found." }, z1, "vaillant_ebus");
     expect(missing.status).toBe("missing");
     expect(missing.missing[0]).toContain("vaillant_ebus.read_time_program (Z1Timer)");
-    expect(errorRead({ code: "home_assistant_error", message: "Z3Timer is not available on this controller" }, z1).status).toBe(
+    expect(errorRead({ code: "home_assistant_error", message: "Z3Timer is not available on this controller" }, z1, "vaillant_ebus").status).toBe(
       "missing",
     );
-    const offline = errorRead({ code: "home_assistant_error", message: "Could not read Z1Timer_Monday0" }, z1, previous);
+    const offline = errorRead({ code: "home_assistant_error", message: "Could not read Z1Timer_Monday0" }, z1, "vaillant_ebus", previous);
     expect(offline.status).toBe("offline");
     expect(offline.days.monday).toEqual(previous.days.monday); // last known values stay visible
   });
@@ -230,7 +230,6 @@ describe("writing through the action", () => {
     const missing = errorRead(
       { code: "home_assistant_error", message: "Program 'Z2Timer' is not available on this controller." },
       agZ1,
-      undefined,
       "arotherm_genia_ebusd",
     );
     expect(missing.status).toBe("missing");

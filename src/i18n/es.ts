@@ -129,7 +129,7 @@ export const es: Strings = {
       `Franja ${index + 1}: el regulador tiene ${actual}, se esperaba ${expected}`,
     timeout: (s: number) => `Sin confirmación del regulador en ${s} s`,
     publish: (message: string) => `No se pudo publicar en MQTT: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Restaurar anterior",
   retry: "Reintentar",

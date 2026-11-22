@@ -129,7 +129,7 @@ export const sv: Strings = {
       `Period ${index + 1}: regulatorn har ${actual}, förväntat ${expected}`,
     timeout: (s: number) => `Ingen bekräftelse från regulatorn inom ${s} s`,
     publish: (message: string) => `Kunde inte publicera till MQTT: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Återställ föregående",
   retry: "Försök igen",

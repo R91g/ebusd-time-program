@@ -1,4 +1,4 @@
-import type { ResolvedConfig, ServiceSource } from "../config.js";
+import { isServiceSource, type ResolvedConfig, type ServiceSource } from "../config.js";
 import type { Hass } from "../hass.js";
 import { DAYS, type Day, type ProgramSpec, type Slot } from "../model/types.js";
 import { normalizeSlots } from "../model/week.js";
@@ -11,7 +11,6 @@ import type { ProgramRead } from "./mqtt.js";
  * - `<domain>.read_time_program` returns all days of a program,
  * - `<domain>.write_time_program` writes a day, reads it back and returns what the controller stored.
  */
-export const DOMAIN = "vaillant_ebus";
 export const READ_SERVICE = "read_time_program";
 export const WRITE_SERVICE = "write_time_program";
 
@@ -23,7 +22,8 @@ export const SOURCE_LABELS: Record<ServiceSource, string> = {
 
 /** Home Assistant service domain for a service-based card source. */
 export function serviceDomain(cfg: ResolvedConfig): ServiceSource {
-  return cfg.source === "arotherm_genia_ebusd" ? "arotherm_genia_ebusd" : DOMAIN;
+  if (!isServiceSource(cfg.source)) throw new Error(`Source ${cfg.source} has no actions`);
+  return cfg.source;
 }
 
 /** Human-readable integration label for a service-based card source. */
@@ -106,12 +106,7 @@ const empty = (): Record<Day, Slot[] | null> => Object.fromEntries(DAYS.map((d) 
 export const loadingRead = (): ProgramRead => ({ status: "loading", days: empty(), countMessage: null, missing: [] });
 
 /** A program read after a failed read; `previous` keeps the last known days on a temporary failure. */
-export function errorRead(
-  error: unknown,
-  spec: ProgramSpec,
-  previous?: ProgramRead,
-  domain: ServiceSource = DOMAIN,
-): ProgramRead {
+export function errorRead(error: unknown, spec: ProgramSpec, domain: ServiceSource, previous?: ProgramRead): ProgramRead {
   if (isMissing(error)) {
     return {
       status: "missing",
@@ -198,7 +193,7 @@ export class ServiceStore {
       .then((read) => this.set(key, read, now))
       .catch((error: unknown) => {
         console.warn(`ebusd-time-program-card: reading ${spec.messagePrefix} failed:`, errorText(error));
-        this.set(key, errorRead(error, spec, this.entries.get(key)?.read, serviceDomain(cfg)), now);
+        this.set(key, errorRead(error, spec, serviceDomain(cfg), this.entries.get(key)?.read), now);
       });
     this.entries.set(key, { read: entry?.read ?? loadingRead(), at: entry?.at ?? null, pending });
     return pending;

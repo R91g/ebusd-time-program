@@ -129,7 +129,7 @@ export const el: Strings = {
       `Διάστημα ${index + 1}: ο ελεγκτής έχει ${actual}, αναμενόταν ${expected}`,
     timeout: (s: number) => `Καμία επιβεβαίωση από τον ελεγκτή εντός ${s} s`,
     publish: (message: string) => `Αποτυχία δημοσίευσης στο MQTT: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Επαναφορά προηγούμενου",
   retry: "Επανάληψη",

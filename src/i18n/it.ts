@@ -129,7 +129,7 @@ export const it: Strings = {
       `Fascia ${index + 1}: la centralina ha ${actual}, atteso ${expected}`,
     timeout: (s: number) => `Nessuna conferma dalla centralina entro ${s} s`,
     publish: (message: string) => `Impossibile pubblicare su MQTT: ${message}`,
-    service: (message: string, integration = "Vaillant eBUS") => `${integration}: ${message}`,
+    service: (message: string, integration = "eBUS") => `${integration}: ${message}`,
   },
   restorePrevious: "Ripristina precedente",
   retry: "Riprova",
