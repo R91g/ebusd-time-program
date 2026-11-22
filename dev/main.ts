@@ -12,8 +12,8 @@ import { applyHaTheme, mountSettingsBar } from "./settings-bar.js";
 //   ignore=Z1Timer_Tuesday,...   writes the fake controller ACKs but never applies (-> failure)
 //   timeout=5            verify timeout in s (default 30)
 //   nomqtt=1             hass without callService
-//   source=vaillant_ebus read/write through the (fake) Vaillant eBUS integration's actions instead of MQTT
-//   refresh=60           vaillant_ebus: seconds between reads (default 300)
+//   source=vaillant_ebus|arotherm_genia_ebusd  read/write through the (fake) integration's actions instead of MQTT
+//   refresh=60           service sources: seconds between reads (default 300)
 //   state=startup|weekend|slot|offline|nohwc   start in a sensor-state scenario (toolbar on the page)
 //   programs=z1,z2,hwc   programs to show (the fake system has no Z2/Z3 sensors)
 //   lang=de|fr|en-GB|…   card language (default: hass.language = en)
@@ -69,7 +69,7 @@ ebusd.hass = () => {
   return {
     ...hass,
     callService: (domain, name, data, ...rest) => {
-      if (domain === "vaillant_ebus") console.info(`${domain}.${name}`, data);
+      if (domain === "vaillant_ebus" || domain === "arotherm_genia_ebusd") console.info(`${domain}.${name}`, data);
       return hass.callService!(domain, name, data, ...rest);
     },
   };

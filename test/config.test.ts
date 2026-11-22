@@ -114,10 +114,22 @@ describe("config", () => {
     // tab: the configured name, else the short form
     expect(c.programs.map((p) => programTabLabel(p))).toEqual(["CC", "Living"]);
   });
-  it("source: MQTT by default; vaillant_ebus with entry and refresh interval", () => {
+  it("source: MQTT by default; service sources with entry, refresh interval and default prefixes", () => {
     expect([cfg.source, cfg.entryId, cfg.refreshInterval]).toEqual(["mqtt", null, 300]);
     const c = resolveConfig({ type: "x", source: "vaillant_ebus", entry_id: " abc ", refresh_interval: 0 });
     expect([c.source, c.entryId, c.refreshInterval]).toEqual(["vaillant_ebus", "abc", 0]);
+    expect(c.programs.map((p) => p.spec.messagePrefix)).toEqual(["Z1Timer", "HwcTimer", "CcTimer"]);
+
+    const ag = resolveConfig({ type: "x", source: "arotherm_genia_ebusd", entry_id: " def " });
+    expect([ag.source, ag.entryId, ag.refreshInterval]).toEqual(["arotherm_genia_ebusd", "def", 300]);
+    expect(ag.programs.map((p) => p.spec.messagePrefix)).toEqual(["Z1Timer", "HwcTimer", "CirculationTimer"]);
+
+    const customCc = resolveConfig({
+      type: "x",
+      source: "arotherm_genia_ebusd",
+      programs: [{ id: "cc", message_prefix: "CustomCcTimer" }],
+    });
+    expect(customCc.programs[0]!.spec.messagePrefix).toBe("CustomCcTimer");
   });
   it.each([
     [{ programs: [] }, "non-empty"],

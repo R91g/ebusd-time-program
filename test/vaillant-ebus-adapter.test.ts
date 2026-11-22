@@ -186,6 +186,7 @@ describe("writing through the action", () => {
     expect(stored).toEqual([slots[1], slots[0]]);
     expect(ebusd.controllerDay(z1, "saturday")).toEqual(stored);
     expect(ebusd.serviceLog.at(-1)).toEqual({
+      domain: "vaillant_ebus",
       service: "write_time_program",
       data: {
         program: "Z1Timer",
@@ -196,5 +197,53 @@ describe("writing through the action", () => {
         ],
       },
     });
+  });
+
+  it("supports arotherm_genia_ebusd actions with CirculationTimer default prefix and isolated cache", async () => {
+    const agCfg = resolveConfig({ type: "x", source: "arotherm_genia_ebusd", entry_id: "ag1" });
+    const agZ1 = agCfg.programs[0]!.spec;
+    const agCc = agCfg.programs[2]!.spec;
+    expect(agCc.messagePrefix).toBe("CirculationTimer");
+
+    const ebusd = new FakeEbusd(agCfg, sampleStates());
+    const ccRead = await readProgramService(ebusd.hass(), agCfg, agCc);
+    expect(ccRead.status).toBe("ok");
+    expect(ebusd.serviceLog.at(-1)).toEqual({
+      domain: "arotherm_genia_ebusd",
+      service: "read_time_program",
+      data: { program: "CirculationTimer", entry_id: "ag1" },
+    });
+
+    const stored = await writeDayService(ebusd.hass(), agCfg, agCc, "monday", [{ start: "06:00", end: "08:00" }]);
+    expect(stored).toEqual([{ start: "06:00", end: "08:00" }]);
+    expect(ebusd.serviceLog.at(-1)).toEqual({
+      domain: "arotherm_genia_ebusd",
+      service: "write_time_program",
+      data: {
+        program: "CirculationTimer",
+        entry_id: "ag1",
+        days: ["monday"],
+        slots: [{ start: "06:00", end: "08:00" }],
+      },
+    });
+
+    const missing = errorRead(
+      { code: "home_assistant_error", message: "Program 'Z2Timer' is not available on this controller." },
+      agZ1,
+      undefined,
+      "arotherm_genia_ebusd",
+    );
+    expect(missing.status).toBe("missing");
+    expect(missing.missing[0]).toContain("arotherm_genia_ebusd.read_time_program (Z1Timer)");
+
+    // Shared store keeps vaillant_ebus and arotherm_genia_ebusd reads separate
+    const store = new ServiceStore();
+    const callService = vi.fn().mockResolvedValue({ context: {}, response: week({}) });
+    const hass: Hass = { states: {}, callService };
+    await store.load(hass, cfg, z1, 300_000, 0);
+    await store.load(hass, resolveConfig({ type: "x", source: "arotherm_genia_ebusd" }), agZ1, 300_000, 0);
+    expect(callService).toHaveBeenCalledTimes(2);
+    expect(callService.mock.calls[0]![0]).toBe("vaillant_ebus");
+    expect(callService.mock.calls[1]![0]).toBe("arotherm_genia_ebusd");
   });
 });
